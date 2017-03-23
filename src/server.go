@@ -17,6 +17,9 @@ type Data struct {
 }
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
+	url := "http://192.168.100.210/REALDATA.HTM"
+	parser.Parse(url)
+
 	t := time.Now()
 	utc := t.UTC()
 	year := utc.Year()
@@ -42,10 +45,6 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main(){
-	// ch := make(chan int)
-	// url := "http://192.168.100.210/REALDATA.HTM"
-	// go parser.ParsePeriodically(url,ch)
-
 	rand.Seed(time.Now().UnixNano())
 
 	fmt.Println("server started.")

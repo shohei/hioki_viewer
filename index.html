@@ -5,13 +5,8 @@
     <title></title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.js"></script>
     <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
       var chart; // global
-
-      /**
-      * Request data from the server, add it to the graph and set a timeout to request again
-      */
 
       function requestData() {
         $.ajax({
@@ -29,7 +24,7 @@
             var series = chart.series[0],
             shift = series.data.length > 20; // shift if the series is longer than 20
             chart.series[0].addPoint([datetime,point["value"]], true, shift);
-            setTimeout(requestData, 1000);
+            setTimeout(requestData, 5000);
           },
           cache: false
         });
@@ -41,7 +36,6 @@
       var nd = new Date(utc + (3600000*offset)).getTime();
       return nd;
     } 
-
 
       $(document).ready(function() {
         Highcharts.setOptions({
