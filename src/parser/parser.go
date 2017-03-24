@@ -26,7 +26,7 @@ func ValueFloat(v string) float64{
 }
 
 func Parse(url string, dt []int) []*SensorData{
-	s := make([]*SensorData,20)
+	s := make([]*SensorData,18)
 	pp.Print(s)
 
 	dom,_ := goquery.NewDocument(url)
