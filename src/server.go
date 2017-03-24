@@ -29,7 +29,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	hour := utc.Hour()
 	minute := utc.Minute()
 	second := utc.Second()
-	fmt.Println(year,month,day,hour,minute,second)
+	// fmt.Println(year,month,day,hour,minute,second)
 	datetime := []int {year,month,day,hour,minute,second}
 
 	ds := parser.Parse(url,datetime)
@@ -41,7 +41,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	bytes, _ := json.Marshal(das)
 
-	fmt.Println("Received Request")
+	// fmt.Println("Received Request")
 	w.Header().Set("Content-Type", "text/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Write(bytes)
