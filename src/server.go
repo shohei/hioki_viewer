@@ -1,6 +1,7 @@
 package main
 
 import (
+// "github.com/k0kubun/pp"
 "./parser"
 "fmt"
 "net/http"
@@ -8,17 +9,16 @@ import (
 "math/rand"
 "time"
 "flag"
-	// "reflect"
 )
 
-type Data struct {
-	Name         string    `json:"name"`
-	CreatedAt    []int `json:"created_at"`
-	Value        int       `json:"value"`
+var ip *string
+
+type DataArray struct {
+	Number int 
+	SensorData *parser.SensorData
 }
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
-	ip := flag.String("ip", "192.168.100.210", "IP address of hioki logger")
 	url := "http://"+ *ip +"/REALDATA.HTM"
 
 	t := time.Now()
@@ -32,18 +32,24 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(year,month,day,hour,minute,second)
 	datetime := []int {year,month,day,hour,minute,second}
 
-	d := parser.Parse(url,datetime)
-	bytes, _ := json.Marshal(d)
+	ds := parser.Parse(url,datetime)
+	das := make([]DataArray,16)
+	for i,d := range ds {
+		da := &das[i]
+		da.Number = i
+		da.SensorData = d
+	}
+	bytes, _ := json.Marshal(das)
 
 	fmt.Println("Received Request")
 	w.Header().Set("Content-Type", "text/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Write(bytes)
-	fmt.Println(bytes)
 }
 
 func main(){
 	rand.Seed(time.Now().UnixNano())
+	ip = flag.String("ip", "192.168.100.210", "IP address of hioki logger")
 
 	fmt.Println("server started.")
 	http.HandleFunc("/",MainHandler)

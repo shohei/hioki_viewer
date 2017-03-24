@@ -1,7 +1,7 @@
 package parser
 
 import (
-"github.com/k0kubun/pp"
+// "github.com/k0kubun/pp"
 "strconv"
 "github.com/PuerkitoBio/goquery"
 "strings"
@@ -9,9 +9,9 @@ import (
 )
 
 type SensorData struct{
-	name string
-	datetime []int
-	value float64
+	Name string
+	Datetime []int
+	Value float64
 }
 
 func ValueFloat(v string) float64{
@@ -26,8 +26,7 @@ func ValueFloat(v string) float64{
 }
 
 func Parse(url string, dt []int) []*SensorData{
-	s := make([]*SensorData,18)
-	pp.Print(s)
+	s := make([]*SensorData,16)
 
 	dom,_ := goquery.NewDocument(url)
 	dom.Find("table").Children().Each(func(i int, n *goquery.Selection){
@@ -46,17 +45,17 @@ func Parse(url string, dt []int) []*SensorData{
 							value_string := nnn.Text()
 							s_num := 2*(j-1)-1
 							s_name := "Sensor"+strconv.Itoa(s_num)
-							ss := &SensorData{name: s_name, datetime: dt, value: ValueFloat(value_string)}
+							ss := &SensorData{Name: s_name, Datetime: dt, Value: ValueFloat(value_string)}
 
-							s_idx := 2*(j-1)
+							s_idx := 2*(j-2)
 							s[s_idx] = ss
 						case 4:
 							value_string := nnn.Text()
 							s_num := 2*(j-1)
 							s_name := "Sensor"+strconv.Itoa(s_num)
-							ss := &SensorData{name: s_name, datetime: dt, value: ValueFloat(value_string)}
+							ss := &SensorData{Name: s_name, Datetime: dt, Value: ValueFloat(value_string)}
 
-							s_idx := 2*(j-1)+1
+							s_idx := 2*(j-2)+1
 							s[s_idx] = ss
 						}
 						})
