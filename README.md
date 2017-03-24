@@ -1,6 +1,9 @@
 # HIOKI viewer
-
 ![](image/temp.png)
+
+# Target device
+LR8402
+
 
 # How to use
 ```
