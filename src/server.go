@@ -1,12 +1,13 @@
 package main
 
 import (
-	// "./parser"
+"./parser"
 "fmt"
 "net/http"
 "encoding/json"
 "math/rand"
 "time"
+"flag"
 	// "reflect"
 )
 
@@ -17,8 +18,8 @@ type Data struct {
 }
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
-	url := "http://192.168.100.210/REALDATA.HTM"
-	parser.Parse(url)
+	ip := flag.String("ip", "192.168.100.210", "IP address of hioki logger")
+	url := "http://"+ *ip +"/REALDATA.HTM"
 
 	t := time.Now()
 	utc := t.UTC()
@@ -30,11 +31,8 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	second := utc.Second()
 	fmt.Println(year,month,day,hour,minute,second)
 	datetime := []int {year,month,day,hour,minute,second}
-	d := Data{
-		"Sensor1",
-		datetime,
-		rand.Intn(10),
-	}
+
+	d := parser.Parse(url,datetime)
 	bytes, _ := json.Marshal(d)
 
 	fmt.Println("Received Request")
