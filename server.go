@@ -4,11 +4,13 @@ import (
 // "github.com/k0kubun/pp"
 "./parser"
 "fmt"
-"net/http"
+"net/http" 
 "encoding/json"
 "math/rand"
 "time"
 "flag"
+"os/exec"
+"regexp"
 )
 
 var host_ip *string
@@ -51,7 +53,18 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 func main(){
 	finish := make(chan bool)
 	rand.Seed(time.Now().UnixNano())
-	host_ip = flag.String("host-ip", "localhost", "IP address of hioki logger")
+	cmdstr := "ifconfig | grep 192"
+	out, err := exec.Command("sh", "-c", cmdstr).Output()
+	if(err != nil){
+		fmt.Println(err)
+		panic(err)
+	}
+	outstr := string(out)
+	r := regexp.MustCompile("192\\.\\d*\\.\\d*\\.\\d")
+	res := r.FindAllString(outstr,-1)	
+	host_ip := res[0]
+	fmt.Println("host ip address is:",host_ip)
+
 	logger_ip = flag.String("logger-ip", "192.168.100.210", "IP address of hioki logger")
 	fmt.Println("server started.")
 
