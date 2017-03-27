@@ -10,7 +10,7 @@
 
       function requestData() {
         $.ajax({
-          url: 'http://localhost:3000/',
+          url: 'http://{{.HostIp}}:3000/',
           success: function(DataArray) {
             console.log(DataArray);
             for (var i=0;i<15;i++){
