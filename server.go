@@ -14,7 +14,7 @@ import (
 var ip *string
 
 type DataArray struct {
-	Number int 
+	Number int
 	SensorData *parser.SensorData
 }
 
@@ -48,10 +48,22 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main(){
+	finish := make(chan bool)
 	rand.Seed(time.Now().UnixNano())
 	ip = flag.String("ip", "192.168.100.210", "IP address of hioki logger")
-
 	fmt.Println("server started.")
-	http.HandleFunc("/",MainHandler)
-	http.ListenAndServe(":3000", nil)
+
+	staticServer := http.NewServeMux()
+	staticServer.Handle("/",http.FileServer(http.Dir("./")))
+
+	logServer := http.NewServeMux()
+	logServer.HandleFunc("/",MainHandler)
+
+	go func(){
+		http.ListenAndServe(":8000",staticServer)
+	}()
+	go func(){
+		http.ListenAndServe(":3000", logServer)
+	}()
+	<- finish
 }
