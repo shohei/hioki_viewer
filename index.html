@@ -12,13 +12,10 @@
         $.ajax({
           url: 'http://{{.HostIp}}:3000/',
           success: function(DataArray) {
-            console.log(DataArray);
             for (var i=0;i<15;i++){
               let d0 = DataArray[i];
               let d = d0['SensorData'];
-              console.log(d);
               let dt = d['Datetime'];
-              console.log(dt);
               let year = dt[0];
               let month = dt[1]-1;
               let day = dt[2];
@@ -26,7 +23,6 @@
               let minute = dt[4];
               let second = dt[5];
               let datetime = Date.UTC(year,month,day,hour,minute,second);
-              console.log(new Date(datetime));
               var series = chart.series[i];
               if(i==0){
                 shift = series.data.length > 20; // shift if the series is longer than 20
