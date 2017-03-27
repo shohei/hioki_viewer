@@ -11,7 +11,8 @@ import (
 "flag"
 )
 
-var ip *string
+var host_ip *string
+var logger_ip *string
 
 type DataArray struct {
 	Number int
@@ -19,7 +20,7 @@ type DataArray struct {
 }
 
 func MainHandler(w http.ResponseWriter, r *http.Request) {
-	url := "http://"+ *ip +"/REALDATA.HTM"
+	url := "http://"+ *logger_ip +"/REALDATA.HTM"
 
 	t := time.Now()
 	utc := t.UTC()
@@ -50,7 +51,8 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 func main(){
 	finish := make(chan bool)
 	rand.Seed(time.Now().UnixNano())
-	ip = flag.String("ip", "192.168.100.210", "IP address of hioki logger")
+	host_ip = flag.String("host-ip", "localhost", "IP address of hioki logger")
+	logger_ip = flag.String("logger-ip", "192.168.100.210", "IP address of hioki logger")
 	fmt.Println("server started.")
 
 	staticServer := http.NewServeMux()
