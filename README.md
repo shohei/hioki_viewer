@@ -2,8 +2,9 @@
 ![](image/temp.png)
 
 # Target device
-LR8402
+[LR8402](https://www.hioki.co.jp/shop/products/detail/122)
 
+![LR8402](https://www.hioki.co.jp/shop/html/upload/save_image/lr8402.jpg)
 
 # How to use
 ```
