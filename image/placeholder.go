@@ -1,0 +1,14 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main(){
+	str := `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam facilisis magna a ullamcorper hendrerit. Cras ultrices, sem sed ornare posuere, massa lacus luctus neque, non elementum felis mi nec urna. Quisque commodo ultrices neque, ut feugiat enim consectetur id. Vivamus mi massa, pharetra quis iaculis sit amet, lacinia eu dolor. Phasellus sed consequat sem. Aenean elit sem, vehicula eu porta et, dapibus ac tellus. Cras neque tortor, dapibus a metus quis, mattis ultricies est. Quisque congue vulputate nulla, sit amet bibendum felis. Morbi et leo sit amet leo laoreet ultrices. Aliquam ultricies nunc nisi, id facilisis urna pharetra ac. Nullam congue metus placerat hendrerit varius. Ut et vestibulum tortor. Mauris rutrum ipsum vitae tristique ullamcorper. Morbi turpis erat, accumsan at posuere nec, eleifend in dui.
+	Curabitur pharetra dignissim tellus ac mollis. Donec mollis, lectus ut sodales bibendum, ante lorem efficitur tellus, et pellentesque arcu erat ut arcu. Ut ultricies congue velit. Quisque aliquam nisl leo, eget posuere massa ullamcorper sed. Integer luctus eros turpis, sit amet accumsan diam ultricies sed. Integer suscipit sed leo vitae ullamcorper. Curabitur scelerisque vitae nibh ac ultrices. Donec tempus metus sed metus viverra consectetur. Donec vehicula massa at quam lobortis, vel suscipit lorem blandit. Aliquam sed finibus dui, ullamcorper eleifend nibh.
+	Duis vehicula arcu in nibh rhoncus, vitae vulputate risus scelerisque. In sollicitudin nisl tortor, eu venenatis nisl tempor vel. Pellentesque condimentum eros arcu, faucibus egestas ligula finibus vitae. Duis congue luctus feugiat. Morbi feugiat in quam eu scelerisque. Sed sit amet hendrerit ex, non ultrices ligula. Nunc vitae augue ac erat placerat molestie. Ut aliquam ante sit amet odio gravida, at feugiat velit tincidunt. Nulla porttitor augue massa, ut eleifend felis pellentesque ac.
+	Curabitur fringilla lacus vitae dignissim sodales. In feugiat at sem nec vulputate. Donec sed aliquam magna, vel mollis diam. Fusce pharetra leo volutpat dolor finibus ultrices. Sed nisl purus, convallis id ligula nec, pretium semper ligula. Praesent nisl sem, accumsan eu dictum nec, ultricies lobortis quam. Nunc lacinia ac elit ac accumsan. Integer in risus quam. Sed rhoncus nisl ac turpis vestibulum eleifend. In id pretium eros, a vehicula orci.
+	Morbi felis velit, lacinia non lorem vel, pharetra interdum massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam bibendum, ligula eu ultrices mattis, neque massa viverra ante, non maximus nibh purus non nisl. Maecenas quis aliquam nibh. Integer venenatis semper tempor. Cras elementum fringilla sagittis. Sed ullamcorper magna vulputate sapien tempor elementum. Cras at elit mattis, venenatis enim quis, molestie eros.`
+	fmt.Println(str)
+}
